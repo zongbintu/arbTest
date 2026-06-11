@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
-# LOF01_daily_updater.py - 每日数据大一统更新器
+# daily_updater.py - 每日数据大一统更新器
 import os
 import sys
 # 自动引导路径：确保能找到根目录下的 arbcore
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-import os
-import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 import json
 import yaml
 import logging
@@ -20,9 +18,9 @@ from arbcore.base_app import BaseApp, setup_logging
 from arbcore.fetchers.historical import HistoricalDataManager
 from arbcore.fetchers.woody_web_crawler import WoodyWebCrawler
 from arbcore.fetchers.woody_api_service import WoodyAPIService
-from account_private import WOODY_USERNAME, WOODY_PASSWORD
+from arbcore.config.account_private import WOODY_USERNAME, WOODY_PASSWORD
 try:
-    from account_private import VPS_HOST, VPS_PORT, VPS_USER, VPS_PASSWORD, VPS_DATA_DIR
+    from arbcore.config.account_private import VPS_HOST, VPS_PORT, VPS_USER, VPS_PASSWORD, VPS_DATA_DIR
 except ImportError:
     VPS_HOST, VPS_PORT, VPS_USER, VPS_PASSWORD, VPS_DATA_DIR = None, 22, None, None, None
 

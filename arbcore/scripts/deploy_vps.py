@@ -1,8 +1,11 @@
 import paramiko
 import os
+import sys
 import yaml
 import pandas as pd
-from LOFarb.account_private import VPS_HOST, VPS_PORT, VPS_USER, VPS_PASSWORD, VPS_DATA_DIR, WOODY_BOT_TOKEN
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+from arbcore.config.account_private import VPS_HOST, VPS_PORT, VPS_USER, VPS_PASSWORD, VPS_DATA_DIR, WOODY_BOT_TOKEN
 
 def deploy():
     print(f"🚀 正在连接东京 VPS ({VPS_HOST})...")
