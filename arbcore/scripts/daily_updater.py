@@ -528,7 +528,9 @@ class DailyUpdater(BaseApp):
         for fund in self.config.get('funds', []):
             for item in fund.get('valuation_portfolio', []) + fund.get('hedging_portfolio', []):
                 sym = str(item.get('symbol', '')).replace('^', '').split('-')[0]
-                if sym and not sym.isdigit(): symbols.add(sym)
+                # 港股代码(5位纯数字如00700)允许通过，其他纯数字跳过
+                if sym and (not sym.isdigit() or len(sym) == 5):
+                    symbols.add(sym)
 
         for sym in symbols:
             df = self.hist_manager.get_prices(sym, source="sina", start_date=start_date)
@@ -753,6 +755,11 @@ class DailyUpdater(BaseApp):
         """步骤九：从VPS同步场内份额数据（含深交所+上交所）"""
         self.logger.info("=== 步骤九：从VPS同步场内份额数据 ===")
         today_str = datetime.now().strftime('%Y-%m-%d')
+
+        # [V10.4] 防刷检查：今日已同步过则跳过，避免每次启动重复拉取 VPS
+        if self.db.is_access_synced_today(today_str, source='jsl_shares_data'):
+            self.logger.info("✅ 今日份额数据已同步，跳过 VPS 拉取")
+            return
 
         vps_shares_data = self._try_sync_all_from_vps('shares')
         processed_count = 0

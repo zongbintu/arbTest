@@ -10,8 +10,8 @@ funds:
   name: 南方原油
   category: 原油
   holdings:
-    equity_ratio: 81.48
-    cash_ratio: 18.52
+    equity_ratio: 82.66
+    cash_ratio: 17.34
   holdings_portfolio: []
   future_hedging:
   - symbol: MCL
@@ -23,20 +23,20 @@ funds:
     name: 微原油期货
   valuation_portfolio:
   - symbol: USO
-    weight: 55.47
+    weight: 62.69
     anchor: US
   - symbol: USO-EU
-    weight: 44.53
+    weight: 37.31
     anchor: EU
   trade_etf: USO
   trade_future: MCL
-  position: 81.48
+  position: 82.66
 - code: '160723'
   name: 嘉实原油
   category: 原油
   holdings:
-    equity_ratio: 82.83
-    cash_ratio: 17.17
+    equity_ratio: 82.39
+    cash_ratio: 17.61
   holdings_portfolio:
   - symbol: USO
     weight: 17.22
@@ -83,20 +83,20 @@ funds:
     name: 微原油期货
   valuation_portfolio:
   - symbol: USO
-    weight: 76.92
+    weight: 78.43
     anchor: US
   - symbol: USO-EU
-    weight: 23.08
+    weight: 21.57
     anchor: EU
   trade_etf: USO
   trade_future: MCL
-  position: 82.83
+  position: 82.39
 - code: '161129'
   name: 易方达原油
   category: 原油
   holdings:
-    equity_ratio: 84.2
-    cash_ratio: 15.8
+    equity_ratio: 84.99
+    cash_ratio: 15.01
   holdings_portfolio:
   - symbol: CRUD.L
     weight: 18.52
@@ -138,14 +138,14 @@ funds:
     name: 微原油期货
   valuation_portfolio:
   - symbol: USO
-    weight: 63.35
+    weight: 68.86
     anchor: US
   - symbol: USO-EU
-    weight: 36.65
+    weight: 31.14
     anchor: EU
   trade_etf: USO
   trade_future: MCL
-  position: 84.2
+  position: 84.99
 - code: '160216'
   name: 国泰大宗商品
   category: 黄金
@@ -171,17 +171,17 @@ funds:
   trade_etf: GLD,USO
   trade_future: ''
   holdings:
-    equity_ratio: 73.0
-    cash_ratio: 27.0
+    equity_ratio: 74.14
+    cash_ratio: 25.86
   valuation_portfolio:
   - symbol: GLD
-    weight: 52.45
+    weight: 53.72
     anchor: US
   - symbol: USO-EU
-    weight: 30.95
+    weight: 28.31
     anchor: EU
   - symbol: USO
-    weight: 16.6
+    weight: 17.97
     anchor: US
   sina_index_url: ''
   holdings_portfolio: []
@@ -198,7 +198,7 @@ funds:
     currency: USD
     exchange: SMART
     name: 原油
-  position: 73.0
+  position: 74.14
 - code: '160719'
   name: 嘉实黄金
   category: 黄金
@@ -260,14 +260,14 @@ funds:
   trade_etf: GLD
   trade_future: MGC
   holdings:
-    equity_ratio: 93.82
-    cash_ratio: 6.18
+    equity_ratio: 93.78
+    cash_ratio: 6.22
   valuation_portfolio:
   - symbol: GLD
-    weight: 80.7
+    weight: 82.21
     anchor: US
   - symbol: GLD-EU
-    weight: 19.3
+    weight: 17.79
     anchor: EU
   sina_index_url: ''
   holdings_portfolio:
@@ -308,7 +308,7 @@ funds:
     currency: USD
     exchange: SMART
     name: ''
-  position: 93.82
+  position: 93.78
 - code: '164701'
   name: 汇添富贵金属
   category: 黄金
@@ -388,8 +388,8 @@ funds:
   name: 中信保诚
   category: 黄金
   holdings:
-    equity_ratio: 90.85
-    cash_ratio: 9.15
+    equity_ratio: 90.82
+    cash_ratio: 9.18
   holdings_portfolio: []
   future_hedging:
   - symbol: MGC
@@ -401,14 +401,14 @@ funds:
     name: ''
   valuation_portfolio:
   - symbol: GLD
-    weight: 94.43
+    weight: 94.89
     anchor: US
   - symbol: GLD-EU
-    weight: 5.57
+    weight: 5.11
     anchor: EU
   trade_etf: GLD
   trade_future: MGC
-  position: 90.85
+  position: 90.82
 - code: '513350'
   name: 富国标普石油
   category: 纯ETF
@@ -643,19 +643,19 @@ funds:
   trade_etf: XLE
   trade_future: ''
   holdings:
-    equity_ratio: 89.4
-    cash_ratio: 10.6
+    equity_ratio: 90.77
+    cash_ratio: 9.23
   valuation_portfolio:
   - symbol: XLE
-    weight: 84.64
+    weight: 86.72
     anchor: US
   - symbol: USO
-    weight: 15.36
+    weight: 13.28
     anchor: US
   sina_index_url: ''
   holdings_portfolio: []
   future_hedging: []
-  position: 89.4
+  position: 90.77
 - code: '160644'
   name: 港美互联网
   category: 混合跨境
@@ -705,19 +705,19 @@ funds:
   trade_etf: SOXX
   trade_future: ''
   holdings:
-    equity_ratio: 87.67
-    cash_ratio: 12.33
+    equity_ratio: 89.38
+    cash_ratio: 10.62
   valuation_portfolio:
   - symbol: SOXX
-    weight: 76.06
+    weight: 77.09
     anchor: US
   - symbol: SZ159560
-    weight: 23.94
+    weight: 22.91
     anchor: US
   sina_index_url: ''
   holdings_portfolio: []
   future_hedging: []
-  position: 87.67
+  position: 89.38
 - code: '501312'
   name: 海外科技
   category: 混合跨境
