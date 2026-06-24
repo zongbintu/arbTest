@@ -165,19 +165,32 @@ class DailyUpdater(BaseApp):
         try:
             conn = self.db._get_conn()
             cursor = conn.execute(
-                "SELECT COUNT(*) FROM raw_api_data WHERE date = ? AND source = 'woody_lof'",
+                "SELECT COUNT(*), raw_content FROM raw_api_data WHERE date = ? AND source = 'woody_lof'",
                 (today_str,)
             )
-            count = cursor.fetchone()[0]
+            row = cursor.fetchone()
+            count = row[0] if row else 0
+            raw_content = row[1] if row else ""
             conn.close()
-            if count > 0:
+            # 只有内容是有效 JSON dict 时才认为已入库（排除错误信息如 "未授权IP"）
+            if count > 0 and raw_content and raw_content.strip().startswith('{'):
                 self.logger.info(f"✅ 今日({today_str}) Woody 原始数据已在库中({count}条)，无需连VPS，直接标记完成。")
                 self.db.mark_access_synced(today_str, sync_key)
                 return True
+            elif count > 0:
+                self.logger.warning(f"⚠️ 今日({today_str}) Woody 原始数据在库中但内容无效（非JSON），清除后重新获取...")
+                conn2 = self.db._get_conn()
+                conn2.execute("DELETE FROM raw_api_data WHERE date = ? AND source = 'woody_lof'", (today_str,))
+                conn2.commit()
+                conn2.close()
         except Exception as e:
             self.logger.warning(f"检查 Woody 数据库时出错: {e}，继续连接VPS获取")
 
-        codes = [str(fund.get('code', '')) for fund in self.config.get('funds', []) if str(fund.get('code', '')) != '161226']
+        codes = [
+            str(fund.get('code', '')) 
+            for fund in self.config.get('funds', []) 
+            if str(fund.get('code', '')) != '161226' and fund.get('data_source') == 'woody'
+        ]
         # 数据目录迁移到 ArbDashboard/data/（与脚本目录解耦）
         backup_dir = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "ArbDashboard", "data", "woodyAPI"))
         
@@ -894,7 +907,7 @@ class DailyUpdater(BaseApp):
             ri_lower = ri.lower()
 
             # 按 category 分类
-            if category in ('国内指数', '指数LOF'):
+            if category in ('国内指数', '指数LOF', '国内LOF'):
                 a_share.append((fund_code, ri, pos_ratio or 0.95))
             elif category == 'QDII亚洲':
                 hk_funds.append((fund_code, ri, pos_ratio or 0.95))
